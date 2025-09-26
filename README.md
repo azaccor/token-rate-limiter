@@ -1,6 +1,7 @@
 # token-rate-limiter
 
 ![Token Limiter with Lakebase](./Token%20Limiter%20with%20Lakebase.png)
+[📹 Video Walkthrough](./Compressed%20Video%20Walkthrough.mp4)
 
 # Explanation
 One of the cornerstones of the Databricks value-add in AI is that we are a model provider neutral platform. We offer native pay-per-token hosting for open source model families like Llama, Gemma, and GPT OSS and we have first party connections with Claude, OpenAI, and by the time you’re watching this hopefully Gemini as well. However, if you want to control costs, our current AI Gateway offering only allows you to do so via QPM rate limiting. QPM certainly has its use cases, but the vast majority of companies don’t care how many times per minute their employees or end users hit a model; they care about how much it’s going to cost them. 
