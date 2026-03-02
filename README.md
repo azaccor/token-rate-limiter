@@ -11,3 +11,11 @@ Introducing token-based rate limiting powered by Lakebase. The idea and implemen
 
 # Why is it Interesting?
 For as little as 28 cents an hour in Model Serving, plus the cost of using Lakebase, we now have a highly configurable rate limiter that be set per user, per user per model, per user per model per unit time, and so on. Anything you can configure in a SQL query is now an achievable rate limit you can set in Databricks!
+
+# Updates 3/2/2026
+The newest version of this code features a few important improvements over the original, namely:
+- Provisioned Lakebase replaced with Autoscaling
+  - This is important because Provisioned is eventually going away and Autoscaling will be the new default solution for Lakebase
+- PythonModel model class replaced with ResponsesAgent
+- `async def predict_stream()` added with `httpx.AsyncClient` so that multiple FM API requests can be handled simultaneously
+  - This is important because we will no longer be blocked waiting for a response from the FM call, and the orchestrator can handle many more in the meantime
