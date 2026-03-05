@@ -1,0 +1,22 @@
+command: ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+resources:
+  - name: lakebase-password
+    secret:
+      scope: <YOUR_SECRET_SCOPE>     # e.g. "token-rate-limiter"
+      key: <YOUR_SECRET_KEY>         # e.g. "lakebase-app-password"
+      permission: READ
+env:
+  - name: DATABRICKS_HOST
+    value: "<YOUR_WORKSPACE_URL>"    # e.g. "https://my-workspace.cloud.databricks.com"
+  - name: POSTGRES_HOST
+    value: "<YOUR_LAKEBASE_HOST>"    # e.g. "ep-xxxx.database.us-west-2.cloud.databricks.com"
+  - name: POSTGRES_DB
+    value: "databricks_postgres"
+  - name: POSTGRES_USER
+    value: "token_rate_limiter_app"  # native Postgres role — see setup instructions
+  - name: POSTGRES_PASSWORD
+    valueFrom: lakebase-password
+  - name: SECRET_SCOPE
+    value: "<YOUR_SECRET_SCOPE>"     # same scope as above (used by SDK fallback)
+  - name: SECRET_KEY
+    value: "<YOUR_SECRET_KEY>"       # same key as above (used by SDK fallback)
